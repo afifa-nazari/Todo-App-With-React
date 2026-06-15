@@ -34,6 +34,7 @@ function Header() {
                         {darkMode ? 'Light Mode' : ' Dark Mode'}
                     </button>
                 </div>
+                <button>something new happen</button>
             </div>
         </header>
     );
