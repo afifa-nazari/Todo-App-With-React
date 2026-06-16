@@ -1,52 +1,54 @@
 // src/App.jsx
-import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Home from './pages/Home';
-import TasksPage from './pages/TasksPage';
-import TaskDetailPage from './pages/TaskDetailPage';
-import CompletedTasksPage from './pages/CompletedTasksPage';
-import NotFound from './pages/NotFound';
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import TasksPage from "./pages/TasksPage";
+import TaskDetailPage from "./pages/TaskDetailPage";
+import CompletedTasksPage from "./pages/CompletedTasksPage";
+import NotFound from "./pages/NotFound";
 
 // Default sample tasks
 const defaultTasks = [
   {
     id: 1,
-    title: 'Complete React Assignment',
-    description: 'Build the Smart Todo List app with all required features including routing and localStorage.',
-    priority: 'High',
+    title: "Complete React Assignment",
+    description:
+      "Build the Smart Todo List app with all required features including routing and localStorage.",
+    priority: "High",
     completed: false,
-    createdAt: new Date('2025-04-10').toISOString(),
+    createdAt: new Date("2025-04-10").toISOString(),
   },
   {
     id: 2,
-    title: 'Review Pull Requests',
-    description: 'Check team members PRs and provide feedback.',
-    priority: 'Medium',
+    title: "Review Pull Requests",
+    description: "Check team members PRs and provide feedback.",
+    priority: "Medium",
     completed: false,
-    createdAt: new Date('2025-04-11').toISOString(),
+    createdAt: new Date("2025-04-11").toISOString(),
   },
   {
     id: 3,
-    title: 'Buy Groceries',
-    description: 'Milk, eggs, bread, vegetables, and fruits.',
-    priority: 'Low',
+    title: "Buy Groceries",
+    description: "Milk, eggs, bread, vegetables, and fruits.",
+    priority: "Low",
     completed: true,
-    createdAt: new Date('2025-04-09').toISOString(),
+    createdAt: new Date("2025-04-09").toISOString(),
   },
+
   {
     id: 4,
-    title: 'Team Meeting',
-    description: 'Weekly sync with development team at 2 PM.',
-    priority: 'High',
+    title: "Team Meeting",
+    description: "Weekly sync with development team at 2 PM.",
+    priority: "High",
     completed: false,
-    createdAt: new Date('2025-04-12').toISOString(),
+    createdAt: new Date("2025-04-12").toISOString(),
   },
 ];
 
 function App() {
   const [tasks, setTasks] = useState(() => {
-    const stored = localStorage.getItem('tasks');
+    const stored = localStorage.getItem("tasks");
     if (stored) {
       return JSON.parse(stored);
     }
@@ -55,7 +57,7 @@ function App() {
 
   // Save tasks to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   // Add new task
@@ -71,21 +73,25 @@ function App() {
 
   // Delete task
   const deleteTask = (id) => {
-    setTasks(tasks.filter(task => task.id !== id));
+    setTasks(tasks.filter((task) => task.id !== id));
   };
 
   // Toggle complete status
   const toggleComplete = (id) => {
-    setTasks(tasks.map(task =>
-      task.id === id ? { ...task, completed: !task.completed } : task
-    ));
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task,
+      ),
+    );
   };
 
   // Update task (for future expansion)
   const updateTask = (id, updatedData) => {
-    setTasks(tasks.map(task =>
-      task.id === id ? { ...task, ...updatedData } : task
-    ));
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, ...updatedData } : task,
+      ),
+    );
   };
 
   return (
